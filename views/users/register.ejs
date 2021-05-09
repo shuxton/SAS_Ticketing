@@ -1,0 +1,60 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="container d-flex justify-content-center align-items-center mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h3 class="card-title" style=" height: 50px;
+                    width: 36 0px;
+                    font-weight: 300;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    text-align: center;
+                    margin-right: 30px;"><strong>Register</strong></h3>
+                    <form action="/register2203" method="POST" class="validated-form" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label" for="username">Username</label>
+                            <input class="form-control" type="text" id="username" name="username" autofocus required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="displayName">Display Name</label>
+                            <input class="form-control" type="text" id="displayName" name="displayName" autofocus required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="type">Type</label>
+                            <select id="type" type="text" name="type" class="form-control"
+                            placeholder="" required="required"
+                            data-error="Please choose a type">
+                            <option value="" disabled selected>Select your option</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Customer">Customer</option>
+                            <option value="Employee">Employee</option>
+
+                        </select>                            
+                        <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="password">Password</label>
+                            <input class="form-control" type="password" id="password" name="password" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <button class="btn btn-success btn-block">Sign up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,210 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="container d-flex justify-content-center align-items-center mt-5">
+    <div
+        class="row">
+        <div class="card shadow">
+            <div class="card-body">
+                <h3 class="card-title" style="
+                                            font-weight: 100;
+                                            display: flex;
+                                            flex-direction: column;
+                                            justify-content: center;
+                                            text-align: center;
+                                            margin-right: 30px;">
+                    <strong>Update Ticket</strong>
+                </h3>
+                <form action="/tickets/edit/<%=ticket._id%>" method="POST" class="validated-form" novalidate>
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="project">Project</label>
+                            <input class="form-control" type="text" id="project" name="project" value="<%=ticket.project%>" disabled autofocus required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="subject">Subject</label>
+                            <input class="form-control" type="text" id="subject" name="subject" value="<%=ticket.subject%>" disabled autofocus required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="message">Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="3" disabled autofocus required><%=ticket.message%></textarea>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="adminMessage">Admin Message</label>
+                            <textarea class="form-control" id="adminMessage" name="adminMessage" rows="3" autofocus><%=ticket.adminMessage%></textarea>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3 mb-3">
+                            <div class="form-group">
+                                <label class="form-label" for="severity">Severity*</label>
+                                <select id="severity" type="text" name="severity" class="form-control" placeholder="" required="required" data-error="Please choose a type">
+
+                                    <%if(!!ticket.severity){%>
+                                        <option value="<%=ticket.severity%>" selected><%=ticket.severity%></option>
+                                    <%}else{%>
+                                        <option value="" disabled selected>Select your option</option>
+                                    <%}%>
+                                    <% for(var i=0;i<admin.severity.length;i++){
+                                    if(!(ticket.severity==admin.severity[i])){%>
+                                        <option value="<%=admin.severity[i]%>"><%=admin.severity[i]%></option>
+                                    <%}}%>
+                                </select>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3 mb-3">
+                            <div class="form-group">
+                                <label class="form-label" for="category">Category*</label>
+                                <select id="category" type="text" name="category" class="form-control" placeholder="" required="required" data-error="Please choose a type">
+                                    <%if(!!ticket.category){%>
+                                        <option value="<%=ticket.category%>" selected><%=ticket.category%></option>
+                                    <%}else{%>
+                                        <option value="" disabled selected>Select your option</option>
+                                    <%}%>
+                                    <% for(var i=0;i<admin.category.length;i++){
+                                     if(!(ticket.category==admin.category[i])){%>
+                                        <option value="<%=admin.category[i]%>"><%=admin.category[i]%></option>
+                                    <%}}%>
+                                </select>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3 mb-3">
+                            <div class="form-group">
+                                <label class="form-label" for="internalStatus">Internal Status*</label>
+                                <select id="internalStatus" type="text" name="internalStatus" class="form-control" placeholder="" required="required" data-error="Please choose a type">
+                                    <%if(!!ticket.internalStatus){%>
+                                        <option value="<%=ticket.internalStatus%>" selected><%=ticket.internalStatus%></option>
+                                    <%}else{%>
+                                        <option value="" disabled selected>Select your option</option>
+                                    <%}%>
+                                    <% for(var i=0;i<admin.internalStatus.length;i++){
+                                    if(!(ticket.internalStatus==admin.internalStatus[i])){%>
+                                        <option value="<%=admin.internalStatus[i]%>"><%=admin.internalStatus[i]%></option>
+                                    <%}}%>
+                                </select>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="col-md-3 mb-3">
+                            <div class="form-group">
+                                <label class="form-label" for="priority">Priority*</label>
+                                <select id="priority" type="text" name="priority" class="form-control" placeholder="" required="required" data-error="Please choose a type">
+                                    <%if(!!ticket.priority){%>
+                                        <option value="<%=ticket.priority%>" selected><%=ticket.priority%></option>
+                                    <%}else{%>
+                                        <option value="" disabled selected>Select your option</option>
+                                    <%}%>
+                                    <% for(var i=0;i<admin.priority.length;i++){
+                                        if(!(ticket.priority==admin.priority[i])){%>
+                                        <option value="<%=admin.priority[i]%>"><%=admin.priority[i]%></option>
+                                    <%}}%>
+                                </select>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label" for="estTime">Estimated Time*</label>
+                            <input class="form-control" type="number" id="estTime" name="estTime" placeholder="Number of hours" value="<%=ticket.estTime%>" autofocus required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label" for="expectedResolution">Expected Resolution*</label>
+                            <input class="form-control" type="datetime-local" id="expectedResolution" name="expectedResolution" value="<%=ticket.expectedResolution%>" autofocus required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3 mb-3">
+                            <div class="form-group">
+                                <label class="form-label" for="forwardedTo">Forward To*</label>
+                                <select id="forwardedTo" type="text" name="forwardedTo" class="form-control" placeholder="" required="required" data-error="Please choose a type">
+                                    <%if(!!ticket.forwardedTo){%>
+                                        <option value="<%=ticket.forwardedTo%>" selected><%=ticket.forwardedTo%></option>
+                                    <%}else{%>
+                                        <option value="" disabled selected>Select your option</option>
+                                    <%}%>
+                                    <% for(var i=0;i<employees.length;i++){
+                                        if(!(ticket.forwardedTo==employees[i].username)){%>
+                                        <option value="<%=employees[i].username%>"><%=employees[i].username%></option>
+                                    <%}}%>
+                                </select>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label" for="display">Display it to client*</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="display" id="display1" value="true">
+                                <label class="form-check-label" for="display1">
+                                    Yes
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="display" id="display2" checked value="false">
+                                <label class="form-check-label" for="display2">
+                                    No
+                                </label>
+                            </div>
+
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <center>
+                        <button style="width:min-content;" class="btn btn-danger btn-block">Update</button>
+                        <br>
+
+                    </center>
+                </form>
+                <center>
+                    <form action="/tickets/delete/<%=ticket._id%>" method="post">
+                        <button style="width:min-content" class="btn btn-success btn-block">Completed</button>
+                    </form>
+                </center>
+
+
+            </div>
+        </div>
+        <!-- </div> -->
+    </div>
+</div>

@@ -1,0 +1,99 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="container d-flex justify-content-center align-items-center mt-5">
+    <div
+        class="row">
+        <div class="card shadow">
+            <div class="card-body">
+                <h3 class="card-title" style="
+                                            font-weight: 100;
+                                            display: flex;
+                                            flex-direction: column;
+                                            justify-content: center;
+                                            text-align: center;
+                                            margin-right: 30px;">
+                    <strong>View Ticket</strong>
+                </h3>
+                Client-<%= ticket.clientName %>
+                <br>
+                Project-<%= ticket.project %>
+                <br>
+                CreatedAt-<%= ticket.createdAt %>
+                <br>
+                <h2 style="color: darkblue;">
+                Status-<%=ticket.status%>
+                </h2>
+                <br>
+                <hr>
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label" for="project">Project</label>
+                        <input class="form-control" type="text" id="project" name="project" value="<%=ticket.project%>" disabled autofocus required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label" for="subject">Subject</label>
+                        <input class="form-control" type="text" id="subject" name="subject" value="<%=ticket.subject%>" disabled autofocus required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label" for="message">Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="3" disabled autofocus required><%=ticket.message%></textarea>
+                    </div>
+                    <%if(ticket.display=='true'){%>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label" for="adminMessage">Admin Message</label>
+                        <textarea class="form-control" id="adminMessage" name="adminMessage" rows="3" disabled autofocus><%=ticket.adminMessage%></textarea>
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label" for="severity">Severity</label>
+                        <input class="form-control" type="text" id="severity" name="severity" value="<%=ticket.severity%>" autofocus required disabled>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label" for="category">Category</label>
+                        <input class="form-control" type="text" id="category" name="category" value="<%=ticket.category%>" autofocus required disabled>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label" for="internalStatus">Internal Status</label>
+                        <input class="form-control" type="text" id="internalStatus" name="internalStatus" value="<%=ticket.internalStatus%>" autofocus required disabled>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label" for="priority">Priority</label>
+                        <input class="form-control" type="text" id="priority" name="priority" value="<%=ticket.priority%>" autofocus required disabled>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label" for="estTime">Estimated Time</label>
+                        <input class="form-control" type="text" id="estTime" name="estTime" placeholder="Number of hours" value="<%=ticket.estTime%>hrs" autofocus required disabled>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label" for="expectedResolution">Expected Resolution</label>
+                        <input class="form-control" type="datetime-local" id="expectedResolution" name="expectedResolution" value="<%=ticket.expectedResolution%>" autofocus required disabled>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label" for="forwardedTo">Forwarded To</label>
+                        <input class="form-control" type="text" id="forwardedTo" name="forwardedTo" value="<%=ticket.forwardedTo%>" autofocus required disabled>
+                    </div>
+                    <%}%>
+                    <%if(currentUser.type!='Customer'){%>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label" for="display">Display</label>
+                        <input class="form-control" type="text" id="display" name="display" value="<%=ticket.display%>" autofocus required disabled>
+                    </div>
+                    <%}%>
+
+                </div>
+
+
+                <center>
+                    <form action="/tickets/dashboard/" method="get">
+                        <button style="width:min-content" class="btn btn-primary btn-block">Back</button>
+                    </form>
+                </center>
+
+
+            </div>
+        </div>
+    </div>
+</div>

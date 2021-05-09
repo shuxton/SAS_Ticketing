@@ -1,0 +1,35 @@
+
+.gradient-background {
+    /* height: 600px; */
+     background: linear-gradient(62deg, #f1df3b, #ff488e, #3dc0f0, #23D5AB);
+       animation: gradient 15s ease infinite; 
+        background-size: 400% 400%;
+    
+  }
+  @-webkit-keyframes gradient{
+    0% {
+      background-position: 0 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+       background-position: 0% 50%;
+    }
+  }
+  @keyframes gradient{
+    0% {
+      background-position: 0 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+       background-position: 0% 50%;
+    }
+  }
+
+  /* @font-face {
+    font-family: debby;
+    src: url(/Debby/Debby.ttf);
+  } */

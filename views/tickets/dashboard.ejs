@@ -1,0 +1,120 @@
+<% layout('layouts/boilerplate')%>
+<h1>Dashboard</h1>
+<div class="row">
+    <%if(currentUser.type=='Customer'){%> 
+    <div class="col-md-3">
+        <a class="btn btn-danger" href="/tickets/new" style="font-size: larger;">Raise Ticket</a>
+    </div>
+    <%}%>
+    <div class="col-md-3">
+        <h3 style="color:red">Newly Created- <%= created %> </h3>
+    </div>
+    <div class="col-md-3">
+        <h3 style="color: blue;">Assigned- <%= assigned %> </h3>
+    </div>
+    <div class="col-md-3">
+        <h3 style="color: green;">Solved- <%= solved %> </h3>
+    </div>
+</div>
+<br>
+<div class="container d-flex justify-content-center align-items-center mt-5">
+    <div class="row">
+        <div class="table-responsive-sm">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Sl No.</th>
+                        <th>Client Name</th>
+                        <th>Project</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>View</th>
+                        <%if(currentUser.type=='Admin'){%>
+                            <th>Update</th>
+                        <%}else if(currentUser.type=='Employee'){%>
+                            <th>Mark as Completed</th>
+                        <%}%>
+                    </tr>
+                </thead>
+
+                <%var i=1; for(let ticket of tickets){%>
+                    <%if(ticket.status=='Created'){%>
+
+
+                        <tr class="table-danger">
+                            <td><%=i%></td>
+                            <td><%=ticket.clientName%></td>
+                            <td><%=ticket.project%></td>
+                            <td><%=ticket.createdAt%></td>
+                            <td><%=ticket.status%> </td>
+                            <td>
+                                <a class="btn btn-primary btn-block" href="/tickets/views/<%=ticket._id%>">View</a>
+                            </td>
+                            <%if(currentUser.type=='Admin'){%>
+                                <td>
+                                    <a class="btn btn-warning btn-block" href="/tickets/edit/<%=ticket._id%>">Update</a>
+                                </td>
+                            <%}else if(currentUser.type=='Employee'){%>
+                                <td>
+                                    <form action="/tickets/delete/<%=ticket._id%>" method="post">
+                                        <button style="width:min-content" class="btn btn-success btn-block">Completed</button>
+                                    </form>
+                                </td>
+                            <%}%>
+                        </tr>
+
+
+                    <%}else if(ticket.status=='Assigned'){%>
+                        <tr class="table-primary">
+                            <td><%=i%></td>
+                            <td><%=ticket.clientName%></td>
+                            <td><%=ticket.project%></td>
+                            <td><%=ticket.createdAt%></td>
+                            <td><%=ticket.status%> </td>
+                            <td>
+                                <a class="btn btn-primary btn-block" href="/tickets/views/<%=ticket._id%>">View</a>
+                            </td>
+                            <%if(currentUser.type=='Admin'){%>
+                                <td>
+                                    <a class="btn btn-warning btn-block" href="/tickets/edit/<%=ticket._id%>">Update</a>
+                                </td>
+                            <%}else if(currentUser.type=='Employee'){%>
+                                <td>
+                                    <form action="/tickets/delete/<%=ticket._id%>" method="post">
+                                        <button style="width:min-content" class="btn btn-success btn-block">Completed</button>
+                                    </form>
+                                </td>
+                            <%}%>
+                        </tr>
+
+
+                    <%}else{%>
+
+                        <tr class="table-success">
+                            <td><%=i%></td>
+                            <td><%=ticket.clientName%></td>
+                            <td><%=ticket.project%></td>
+                            <td><%=ticket.createdAt%></td>
+                            <td><%=ticket.status%> </td>
+                            <td>
+                                <a class="btn btn-primary btn-block" href="/tickets/views/<%=ticket._id%>">View</a>
+                            </td>
+                            <%if(currentUser.type=='Admin'){%>
+                                <td>
+                                    <a class="btn btn-warning btn-block" href="/tickets/edit/<%=ticket._id%>">Update</a>
+                                </td>
+                            <%}else if(currentUser.type=='Employee'){%>
+                                <td>
+                                    <form action="/tickets/delete/<%=ticket._id%>" method="post">
+                                        <button style="width:min-content" class="btn btn-success btn-block">Completed</button>
+                                    </form>
+                                </td>
+                            <%}%>
+                        </tr>
+
+
+                    <%}i=i+1;}%>
+                </table>
+            </div>
+        </div>
+    </div>
